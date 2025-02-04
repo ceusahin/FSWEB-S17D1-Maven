@@ -25,12 +25,14 @@ public class AnimalController {
     }
 
     @PostMapping("/animal")
-    public void addAnimal(int id, Animal animal){
-        animals.put(id, animal);
+    public void addAnimal(@RequestBody Animal animal){
+        animals.put(animal.getId(), animal);
     }
 
     @PutMapping("/animal/{id}")
-    public void updateAnimalId(@PathVariable int id) {
+    public Animal updateAnimalId(@PathVariable int id,@RequestBody Animal animal) {
+        animals.put(id,animal);
+        return animals.get(id);
     }
 
     @DeleteMapping("/animal/{id}")
